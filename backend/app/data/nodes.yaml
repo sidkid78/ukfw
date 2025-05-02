@@ -1,0 +1,32 @@
+nodes:
+  - node_id: USID:PL16:0001
+    label: "Foundations of Gravity"
+    description: "Theories and models explaining gravitation, from Newtonian to contemporary theories."
+    pillar_id: PL16
+    axes:
+      axis1: PL16
+      axis2: Gravity
+      axis3: "0.1"
+      axis4: 1
+      axis5: Year:1915
+      axis6: "doi:10.1093/acprof:9780198504241.003.0002"
+      axis7: Ecosystem:Physics
+      axis8: None
+      axis9: 0.98
+      axis10: Western
+      axis11: USID:PL16:0001
+      axis12: ["Theoretical Physicist"]
+      axis13: { tags: ['historical', 'model'], reviewed_by: ['Einstein, A.'] }
+    metadata:
+      confidence: 0.98
+      provenance: doi:10.1093/acprof:9780198504241.003.0002
+      compliance_tags: []
+      cultural_context: Western
+      version: 2024.1
+      last_reviewed: "2022-08-01"
+      audit_trail:
+        - by: system
+          timestamp: "2022-08-01T10:00:00Z"
+          action: create
+    simulation_roles: ["Theoretical Physicist"]
+    links: []

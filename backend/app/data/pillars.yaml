@@ -1,0 +1,25 @@
+pillars:
+  - pillar_id: PL16
+    name: Physics & Astronomy
+    description: Scientific study of matter, energy, space, and time.
+    parent_pillar_id: null
+    metadata:
+      confidence: 1.0
+      provenance: LibraryOfCongress:QC
+      compliance_tags: []
+      cultural_context: Western
+      version: 2024.1
+    axes:
+      axis1: PL16
+      axis2: Physics
+      axis3: "0"
+      axis4: 0
+      axis5: Epoch:Modern
+      axis6: "https://id.loc.gov/authorities/subjects/sh85101653"
+      axis7: Ecosystem:ScienceResearch
+      axis8: None
+      axis9: 1.0
+      axis10: Western
+      axis11: USID:PL16
+      axis12: None
+      axis13: { tags: ['root'], version: '2024.1' }
