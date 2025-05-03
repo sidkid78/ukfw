@@ -1,0 +1,53 @@
+axes:
+  - axis: 1
+    name: Pillar Domain
+    description: Ontological pillar identifier PL01–PL87.
+    encoding: "PL_code"
+  - axis: 2
+    name: Subdomain Typology
+    description: Subdiscipline or industry mapping.
+    encoding: "string"
+  - axis: 3
+    name: Branch Hierarchy
+    description: Tree branch context within pillar/subpillar (family, subfield, topic)
+    encoding: "string|int"
+  - axis: 4
+    name: Hierarchical Depth (H)
+    description: Depth level in tree (root=0, +1 per child)
+    encoding: "int"
+  - axis: 5
+    name: Temporal (T(x))
+    description: Temporal frame/context (era, year, period, system version)
+    encoding: "string|int"
+  - axis: 6
+    name: Provenance / Source
+    description: Source, origin, or chain of evidence
+    encoding: "string (URI, DOI, source_id)"
+  - axis: 7
+    name: Octopus Node System
+    description: Ecosystem assignment – cross-pillar/discipline “domain mesh/network”
+    encoding: "string|int"
+  - axis: 8
+    name: Compliance / Regulatory
+    description: "Compliance domain: regulatory constraint/cert mapping"
+    encoding: "string|list"
+  - axis: 9
+    name: Confidence / Validation
+    description: Confidence score, validation result, reviewed status
+    encoding: "float|label"
+  - axis: 10
+    name: Cultural/Linguistic Context
+    description: Cultural or linguistic background/context
+    encoding: "string|enum"
+  - axis: 11
+    name: Unified System Coordination
+    description: Unified ID, global locator (Nuremberg Number, SAM.gov, UUID)
+    encoding: "string (UUID, USID, registry id)"
+  - axis: 12
+    name: Simulation / Expert Role
+    description: Contextual agent/expert role invoked
+    encoding: "string|enum|list"
+  - axis: 13
+    name: Dynamic Metadata / Extension
+    description: Context-dependent tags, version, custom metainformation
+    encoding: "dict|list|string"

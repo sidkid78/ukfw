@@ -4,6 +4,7 @@ from .models import KnowledgeNode, Pillar
 from .kg_manager import KnowledgeGraphManager
 from .compliance import filter_for_compliance
 from .simulation import simulate_expert_refinement
+from .simulation.simulation_manager import simulate_full_expert_reasoning
 
 router = APIRouter()
 # Update these paths as needed for your data location
@@ -44,3 +45,12 @@ def query_nodes(
     if axis8:
         nodes = filter_for_compliance(nodes, [axis8])
     return nodes
+
+@router.post("/simulate/{node_id}")
+def simulate_expert_reasoning(node_id: str, confidence_goal: float = 0.995):
+    node = kgm.get_node_by_id(node_id)
+    if not node:
+        raise HTTPException(status_code=404, detail="Node not found")
+    node = simulate_full_expert_reasoning(node, kgm, confidence_goal=confidence_goal)
+    # Return node with updated confidence, metadata, and audit trail
+    return node

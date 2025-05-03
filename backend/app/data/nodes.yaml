@@ -29,4 +29,40 @@ nodes:
           timestamp: "2022-08-01T10:00:00Z"
           action: create
     simulation_roles: ["Theoretical Physicist"]
+    links:
+      - target_node_id: USID:PL16:0002
+        relationship_type: "extends"
+        weight: 1.0
+        axis_vector_diff: [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        metadata: { note: "Related to advanced gravity models" }
+  - node_id: USID:PL16:0002
+    label: "Quantum Gravity"
+    description: "Theories attempting to unify quantum mechanics and general relativity."
+    pillar_id: PL16
+    axes:
+      axis1: PL16
+      axis2: Gravity
+      axis3: "0.2"
+      axis4: 2
+      axis5: Year:1970
+      axis6: "arxiv:gr-qc/9508064"
+      axis7: Ecosystem:Physics
+      axis8: ["GDPR"]
+      axis9: 0.92
+      axis10: Western
+      axis11: USID:PL16:0002
+      axis12: ["Theoretical Physicist", "Knowledge Expert"]
+      axis13: { tags: ['quantum', 'model'], reviewed_by: ['Hawking, S.'] }
+    metadata:
+      confidence: 0.92
+      provenance: arxiv:gr-qc/9508064
+      compliance_tags: ["GDPR"]
+      cultural_context: Western
+      version: 2024.1
+      last_reviewed: "2023-01-15"
+      audit_trail:
+        - by: system
+          timestamp: "2023-01-15T10:00:00Z"
+          action: create
+    simulation_roles: ["Theoretical Physicist", "Knowledge Expert"]
     links: []
