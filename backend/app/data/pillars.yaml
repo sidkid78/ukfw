@@ -1,5 +1,6 @@
 pillars:
-  - pillar_id: PL16
+  - id: PL16
+    pillar_id: PL16
     name: Physics & Astronomy
     description: Scientific study of matter, energy, space, and time.
     parent_pillar_id: null

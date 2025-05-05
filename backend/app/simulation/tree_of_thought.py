@@ -1,5 +1,5 @@
-from simulation.knowledge_algorithms import KNOWLEDGE_ALGORITHMS
-from simulation.expert_roles import EXPERT_ROLE_LIBRARY, get_roles_for_node
+from .knowledge_algorithms import KNOWLEDGE_ALGORITHMS
+from .expert_roles import EXPERT_ROLE_LIBRARY, get_roles_for_node
 
 def tree_of_thought_refinement(node, context, history=None, depth=0, max_depth=3, confidence_goal=0.995):
     """

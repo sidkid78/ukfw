@@ -1,0 +1,16 @@
+roles:
+  - id: ROLE_TP # Unique ID for the Role
+    name: Theoretical Physicist
+    description: Expert in theoretical models of physics.
+    jurisdiction: Universal # Or specific jurisdiction
+    expertise_domains: ["Gravity", "Quantum Mechanics", "Cosmology"]
+    # 'provisions' list is intentionally omitted here;
+    # the manager can populate it later by checking which Provisions reference this Role ID.
+
+  - id: ROLE_KE
+    name: Knowledge Expert
+    description: Expert in knowledge representation and management.
+    jurisdiction: Universal
+    expertise_domains: ["Ontology", "Knowledge Graphs", "Data Curation"]
+
+  # Add other roles as needed

@@ -1,0 +1,23 @@
+experts:
+  - id: EXP_EINSTEIN # Unique ID for the Expert
+    name: Albert Einstein (Historical)
+    role_id: ROLE_TP # Link to the Role defined above
+    domains: ["General Relativity", "Special Relativity"] # Specific domains for this expert
+    location: Princeton, NJ
+    contact: null # Optional contact info
+
+  - id: EXP_HAWKING
+    name: Stephen Hawking (Historical)
+    role_id: ROLE_TP
+    domains: ["Quantum Gravity", "Black Holes", "Cosmology"]
+    location: Cambridge, UK
+    contact: null
+
+  - id: EXP_REG_LEAD
+    name: Jane Doe
+    role_id: ROLE_KE # Assuming a Knowledge Expert role for regulatory mapping
+    domains: ["GDPR Compliance", "Regulatory Analysis"]
+    location: London, UK
+    contact: jane.doe@example.com
+
+  # Add other experts as needed
