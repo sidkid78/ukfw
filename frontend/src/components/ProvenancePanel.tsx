@@ -1,9 +1,15 @@
 'use client';
 
 import React from 'react';
-import { ProvenanceMetadata } from '../lib/types';
 
-export default function ProvenancePanel({ metadata }: { metadata: ProvenanceMetadata }) {
+// Define a simple type for the expected metadata structure
+interface PanelMetadata {
+  provenance?: string;
+  audit_trail?: unknown[];
+  // Add other expected fields if necessary
+}
+
+export default function ProvenancePanel({ metadata }: { metadata: PanelMetadata | null | undefined }) {
   if (!metadata) return null;
   return (
     <div className="mt-2">

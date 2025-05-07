@@ -6,9 +6,9 @@ from simulation.tree_of_thought import tree_of_thought_refinement
 from simulation.knowledge_algorithms import KNOWLEDGE_ALGORITHMS
 
 # Uncomment to mock the LLM for a dry run (no API call)
-# def mock_gpt_4_1_expert_reasoning(node, context, prompt_template=None):
-#     return {"validation": 0.95, "explanation": "Mocked GPT-4.1: node looks good."}
-# KNOWLEDGE_ALGORITHMS["gpt_4_1_expert_reasoning"] = mock_gpt_4_1_expert_reasoning
+def mock_gpt_4_1_expert_reasoning(node, context, prompt_template=None):
+    return {"validation": 0.95, "explanation": "Mocked GPT-4.1: node looks good."}
+KNOWLEDGE_ALGORITHMS["gpt_4_1_expert_reasoning"] = mock_gpt_4_1_expert_reasoning
 
 class Axes:
     axis9 = 0.0  # Initial confidence

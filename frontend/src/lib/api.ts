@@ -8,9 +8,23 @@ const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 // --- Regulation Endpoints (was Pillar) ---
 export async function getRegulations(): Promise<Regulation[]> {
-  const res = await fetch(`${BASE_URL}/regulations`); // Changed endpoint
-  if (!res.ok) throw new Error('Failed to fetch regulations');
-  return await res.json();
+  console.log(`Fetching regulations from: ${BASE_URL}/regulations`); // Log URL
+  try {
+    const res = await fetch(`${BASE_URL}/regulations`); // Changed endpoint
+    console.log("Fetch response status:", res.status);
+    if (!res.ok) {
+      const errorText = await res.text().catch(() => 'Could not read error response text');
+      console.error("Fetch error details:", res.status, errorText);
+      throw new Error('Failed to fetch regulations');
+    }
+    const data = await res.json();
+    console.log("Fetched regulations data:", data); // Log successful data
+    return data;
+  } catch (error) {
+    console.error("Error during fetch/processing:", error); // Log any other errors
+    // Re-throw the error to be caught by the calling component
+    throw new Error(`Failed to fetch regulations: ${error instanceof Error ? error.message : String(error)}`); 
+  }
 }
 
 export async function getRegulation(id: string): Promise<Regulation> {
@@ -32,7 +46,8 @@ interface QueryProvisionsParams {
   jurisdiction?: string;
   tag?: string;
   role_id?: string;
-  // Add other potential query params from your backend endpoint if needed
+  min_confidence?: number;
+  compliance_tag?: string;
 }
 
 export async function queryProvisions(queryParams: QueryProvisionsParams): Promise<Provision[]> {

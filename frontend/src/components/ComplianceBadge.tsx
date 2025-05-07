@@ -8,7 +8,7 @@ export default function ComplianceBadge({ tags }: { tags: string | string[] }) {
   return (
     <span className="space-x-1">
       {tagList.map(tag => (
-        <span key={tag} className="inline-block bg-green-100 text-green-800 px-2 py-0.5 rounded text-xs font-semibold">
+        <span key={tag} className="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-medium">
           {tag}
         </span>
       ))}
