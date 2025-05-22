@@ -1,7 +1,7 @@
 import yaml
-from backend.app.models import KnowledgeNode
-from backend.app.kg_manager import KnowledgeGraphManager
-from backend.app.simulation.simulation_manager import simulate_full_expert_reasoning
+from models import KnowledgeNode
+from kg_manager import KnowledgeGraphManager
+from simulation.simulation_manager import simulate_full_expert_reasoning
 
 def test_simulate_expert_reasoning():
     kgm = KnowledgeGraphManager("backend/app/data/pillars.yaml", "backend/app/data/nodes.yaml")

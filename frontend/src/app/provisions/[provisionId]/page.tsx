@@ -90,14 +90,15 @@ export default async function ProvisionPage({ params: paramsPromise }: Provision
       
       {/* Placeholder for other detailed sections if needed */}
       {/* For example, Spiderweb links, Octopus refs, metadata like confidence */}
-      {/* 
-      {provision.metadata?.confidence && (
-        <div className="mt-4 p-3 bg-gray-50 rounded">
-          <h3 className="font-semibold text-gray-700">Confidence Score:</h3>
-          <p className="text-lg text-green-600">{(provision.metadata.confidence * 100).toFixed(1)}%</p>
+      
+      {provision.metadata?.confidence !== undefined && (
+        <div className="mt-6 mb-6 p-4 bg-slate-50 rounded-lg shadow">
+          <h2 className="text-lg font-semibold text-gray-700 mb-2">Confidence Score</h2>
+          <p className={`text-2xl font-bold ${provision.metadata.confidence >= 0.7 ? 'text-green-600' : provision.metadata.confidence >= 0.4 ? 'text-yellow-600' : 'text-red-600'}`}>
+            {(provision.metadata.confidence * 100).toFixed(1)}%
+          </p>
         </div>
       )}
-      */}
 
       <div className="mt-8">
         <Link href={`/regulations/${provision.regulation_id}`} className="inline-flex items-center text-blue-700 hover:text-blue-900 hover:underline group text-sm">

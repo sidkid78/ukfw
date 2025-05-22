@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "aframe": "^1.7.1",
-    "react-force-graph": "^1.47.6"
+    "react-force-graph": "^1.47.6",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1"
   }
 }

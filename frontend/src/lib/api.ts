@@ -1,8 +1,20 @@
-import { 
+import type { 
   Regulation, Provision, Role, Expert, 
-  // Import mapping node types
-  SpiderwebNode, HoneycombNode, OctopusNode 
-} from './types'; // Import new types
+  SpiderwebNode, HoneycombNode, OctopusNode,
+  ReasoningTrace, ReasoningStep, PersonaProfile, 
+  EducationRequirement, CertificationLicense, Publication
+} from './types';
+
+// Re-export the types to mark them as used by this module's public API
+export type { 
+  ReasoningTrace, ReasoningStep, PersonaProfile, 
+  EducationRequirement, CertificationLicense, Publication,
+  // Also include others if they are part of other function signatures in this file 
+  // or if this file is intended as the primary type export hub for its features.
+  // For now, focusing on the ones related to runQuadReasoning and flagged by linter.
+  Regulation, Provision, Role, Expert, // Assuming these are used by other exported functions
+  SpiderwebNode, HoneycombNode, OctopusNode // Assuming these are used by other exported functions
+};
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
@@ -77,13 +89,21 @@ export async function getRoleById(id: string): Promise<Role> {
 }
 
 // --- Expert Endpoint ---
-export async function getExpertById(id: string): Promise<Expert> {
-  const res = await fetch(`${BASE_URL}/experts/${id}`);
-  if (!res.ok) {
-    console.error(`API Error: Failed to fetch expert ${id}`, res.status, await res.text().catch(() => ''));
-    throw new Error(`Failed to fetch expert ${id}`);
+export async function getExpertById(id: string): Promise<Expert | null> {
+  try {
+    const response = await fetch(`${BASE_URL}/experts/${id}`);
+    if (!response.ok) {
+      if (response.status === 404) {
+        console.warn(`Expert with ID ${id} not found.`);
+        return null;
+      }
+      throw new Error(`Failed to fetch expert ${id}: ${response.statusText}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching expert:", error);
+    return null;
   }
-  return await res.json();
 }
 
 // Placeholder function to get all roles (if needed)
@@ -101,8 +121,6 @@ export async function getAllExperts(): Promise<Expert[]> {
   if (!res.ok) throw new Error('Failed to fetch all experts');
   return await res.json();
 }
-
-// --- Add functions for other new endpoints from mappings.md as needed ---
 
 // Define expected response structure for provision mapping
 export interface ProvisionMappingResponse {
@@ -149,4 +167,31 @@ export async function getAuditManifest(regulationId: string): Promise<AuditManif
   const res = await fetch(`${BASE_URL}/audit/manifest/${regulationId}`); 
   if (!res.ok) throw new Error(`Failed to fetch audit manifest for regulation ${regulationId}`);
   return await res.json(); 
+}
+
+// --- Quad Persona Reasoning Endpoint ---
+export async function runQuadReasoning(query: string, provisionId?: string): Promise<ReasoningTrace | null> {
+  try {
+    const requestBody: { query: string; provision_id?: string } = { query };
+    if (provisionId) {
+      requestBody.provision_id = provisionId;
+    }
+
+    const response = await fetch(`${BASE_URL}/reason/quad`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestBody),
+    });
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({ detail: response.statusText }));
+      console.error(`Failed to run quad reasoning: ${response.status}`, errorData);
+      throw new Error(`Failed to run quad reasoning: ${errorData.detail || response.statusText}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error running quad reasoning:", error);
+    return null;
+  }
 }

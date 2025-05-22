@@ -1,8 +1,11 @@
+'use client';
+
 import QueryPanel from '../../components/QueryPanel';
 import { useState } from 'react';
+import type { Provision } from '../../lib/types';
 
 export default function QueryPage() {
-  const [results, setResults] = useState<any[]>([]);
+  const [results, setResults] = useState<Provision[]>([]);
   return (
     <main className="p-8">
       <h2 className="text-2xl font-semibold mb-2">Advanced Query</h2>

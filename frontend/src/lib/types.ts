@@ -91,6 +91,7 @@ export interface Provision {
   spiderweb_links: string[];
   octopus_refs: string[];
   tags: string[];
+  metadata?: NodeMetadata;
 }
 
 export interface Role {
@@ -142,5 +143,84 @@ export interface OctopusNode {
   linked_provisions: string[];
   experts: string[];
   axes_involved: RegulatoryAxis[];
+}
+
+// --- Quad Persona and Reasoning Trace Types ---
+
+export interface EducationRequirement {
+  degree: string;
+  field_of_study: string;
+  institution?: string;
+}
+
+export interface CertificationLicense {
+  name: string;
+  issuing_authority?: string;
+  license_number?: string;
+}
+
+export interface Publication {
+  title: string;
+  authors: string[];
+  journal_or_conference?: string;
+  year?: number;
+  url_or_doi?: string;
+}
+
+export interface PersonaProfile {
+  profile_id: string;
+  persona_archetype: string;
+  name: string;
+  description?: string;
+  job_title_exemplar?: string;
+  ukg_axes: string[];
+  domain_expertise: string[];
+  industry_sectors: string[];
+  education: EducationRequirement[];
+  certifications_licenses: CertificationLicense[];
+  professional_training: string[];
+  publications_or_research: Publication[];
+  experience_level?: string;
+  key_responsibilities_or_tasks: string[];
+  behavioral_traits: string[];
+  simulation_parameters?: Record<string, unknown>; 
+  source_data_references: string[];
+  custom_properties?: Record<string, unknown>; 
+}
+
+export interface ReasoningStep {
+  step_id: string;
+  description?: string;
+  model_used?: string;
+  persona_profile_id: string;
+  persona_display_name: string;
+  input_context?: unknown; 
+  output_generated?: unknown; 
+  confidence_score?: number;
+  knowledge_references: Array<Record<string, string>>;
+  parent_step_id?: string;
+  child_step_ids: string[];
+  start_time?: string; 
+  end_time?: string;   
+  self_reflection?: string;
+  issues_identified: string[];
+  associated_axes: string[];
+  status?: string;
+  custom_step_data?: Record<string, unknown>; 
+}
+
+export interface ReasoningTrace {
+  task_id: string;
+  request_timestamp: string; 
+  original_query?: unknown; 
+  final_response_summary?: string;
+  overall_confidence_score?: number;
+  total_refinement_iterations: number;
+  steps: ReasoningStep[];
+  personas_involved_ids: string[];
+  reasoning_models_used: string[];
+  ukg_axes_queried: string[];
+  audit_trail_notes: string[];
+  errors_encountered: string[];
 }
 
